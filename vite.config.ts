@@ -22,11 +22,11 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["react", "react/jsx-runtime"],
+      external: ["react/jsx-runtime", ...Object.keys(peerDependencies)],
       input: Object.fromEntries(
         glob
           .sync("lib/**/*.{ts,tsx}", {
-            ignore: ["lib/**/*.d.ts"],
+            ignore: ["lib/**/*.d.ts", "lib/**/*.stories.{ts,tsx}"],
           })
           .map((file) => [
             // The name of the entry point
