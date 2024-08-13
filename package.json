@@ -1,7 +1,7 @@
 {
   "name": "@bartkoelewijnnl/next-instantsearch",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -36,10 +36,10 @@
   },
   "peerDependencies": {
     "@nextui-org/react": "2.x",
-    "framer-motion": "11.x",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-instantsearch": "^7.12.1"
+    "framer-motion": "10.x",
+    "react": "18.x",
+    "react-dom": "18.x",
+    "react-instantsearch": "7.x"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
