@@ -1,7 +1,7 @@
 {
   "name": "@bartkoelewijnnl/next-instantsearch",
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.1",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -19,6 +19,10 @@
     "shake": "npx agadoo",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.yarnpkg.com"
   },
   "dependencies": {
     "@meilisearch/instant-meilisearch": "^0.19.1",
