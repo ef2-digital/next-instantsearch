@@ -22,6 +22,11 @@ const Search = ({ endContent, ...props }: SearchProps) => {
     setValue(value);
   };
 
+  const handleOnClear = () => {
+    clear();
+    setValue("");
+  };
+
   return (
     <Input
       {...props}
@@ -33,7 +38,7 @@ const Search = ({ endContent, ...props }: SearchProps) => {
           {query.length > 0 && (
             <button
               className="w-8 h-8 rounded-full border border-default-400"
-              onClick={clear}
+              onClick={handleOnClear}
             />
           )}
           {endContent}
