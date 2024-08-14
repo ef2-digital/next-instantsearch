@@ -4,7 +4,7 @@ import {
 } from "react-instantsearch";
 import type { Hit, BaseHit } from "instantsearch.js";
 
-interface HighlightProps<T extends Hit<BaseHit>>
+export interface HighlightProps<T extends Hit<BaseHit>>
   extends InstantHighlightProps<T> {}
 
 const Highlight = <T extends Hit<BaseHit>>({

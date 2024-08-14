@@ -2,7 +2,7 @@ import { Listbox, type ListboxProps } from "@nextui-org/react";
 import { useHits, useSearchBox, type UseHitsProps } from "react-instantsearch";
 import type { Hit, BaseHit } from "instantsearch.js";
 
-export interface Hits<T extends BaseHit = BaseHit>
+export interface HitsProps<T extends BaseHit = BaseHit>
   extends Omit<ListboxProps, "children" | "emptyContent">,
     UseHitsProps<T> {
   hitComponent: (hit: Hit<T>, index: number) => JSX.Element;
@@ -19,7 +19,7 @@ const Hits = <T extends BaseHit>({
   classNames,
   itemClasses,
   ...props
-}: Hits<T>) => {
+}: HitsProps<T>) => {
   const { items } = useHits<T>(props);
   const { query } = useSearchBox();
 

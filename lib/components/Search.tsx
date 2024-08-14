@@ -7,11 +7,13 @@ export interface SearchProps
       InputProps,
       "value" | "defaultValue" | "onValueChange" | "onClear" | "isClearable"
     >,
-    UseSearchBoxProps {}
+    UseSearchBoxProps {
+  clearContent?: React.ReactNode;
+}
 
-const Search = ({ endContent, ...props }: SearchProps) => {
+const Search = ({ endContent, clearContent, ...props }: SearchProps) => {
   const { query, refine, clear } = useSearchBox(props);
-  const [value, setValue] = useState(query);
+  const [value, setValue] = useState<string>(query);
 
   const handleOnValueChange = (value: string) => {
     if (value === query) {
@@ -37,9 +39,11 @@ const Search = ({ endContent, ...props }: SearchProps) => {
         <div className="inline-flex items-center gap-2">
           {query.length > 0 && (
             <button
-              className="w-8 h-8 rounded-full border border-default-400"
+              className={`w-8 h-8 rounded-full border border-default-400 ${props.classNames?.clearButton ?? ""}`}
               onClick={handleOnClear}
-            />
+            >
+              {clearContent}
+            </button>
           )}
           {endContent}
         </div>
