@@ -1,7 +1,7 @@
 {
   "name": "@bartkoelewijnnl/next-instantsearch",
   "private": false,
-  "version": "1.0.10",
+  "version": "1.0.11",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -25,6 +25,7 @@
     "registry": "https://registry.yarnpkg.com/"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.22",
     "@meilisearch/instant-meilisearch": "^0.19.1",
     "@nextui-org/react": "^2.4.3",
     "algoliasearch": "^4.24.0",
