@@ -11,13 +11,13 @@ import {
 } from "@nextui-org/react";
 import { UseRefinementListProps, useRefinementList } from "react-instantsearch";
 
-interface RefinementListProps
+export interface RefinementListProps
   extends Omit<CheckboxGroupProps, "children">,
     UseRefinementListProps {
   checkboxProps?: Omit<CheckboxProps, "children" | "classNames">;
-  checkboxClassNames: SlotsToClasses<CheckboxSlots>;
+  checkboxClassNames?: SlotsToClasses<CheckboxSlots>;
   chipProps?: Omit<ChipProps, "children" | "classNames">;
-  chipClassNames: SlotsToClasses<ChipSlots>;
+  chipClassNames?: SlotsToClasses<ChipSlots>;
 }
 
 const RefinementList = ({
@@ -27,7 +27,7 @@ const RefinementList = ({
   chipProps,
   ...props
 }: RefinementListProps) => {
-  const { items } = useRefinementList(props);
+  const { items, refine } = useRefinementList(props);
 
   return (
     <CheckboxGroup {...props}>
@@ -35,6 +35,8 @@ const RefinementList = ({
         <Checkbox
           key={item.value}
           value={item.value}
+          isSelected={item.isRefined}
+          onValueChange={() => refine(item.value)}
           classNames={{
             ...checkboxClassNames,
             label: `inline-flex gap-2 ${checkboxClassNames?.label ?? ""}`,

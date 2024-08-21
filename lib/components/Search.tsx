@@ -16,12 +16,11 @@ const Search = ({ endContent, clearContent, ...props }: SearchProps) => {
   const [value, setValue] = useState<string>(query);
 
   const handleOnValueChange = (value: string) => {
-    if (value === query) {
-      return;
-    }
-
-    refine(value);
     setValue(value);
+
+    if (value !== query) {
+      refine(value);
+    }
   };
 
   const handleOnClear = () => {
@@ -37,7 +36,7 @@ const Search = ({ endContent, clearContent, ...props }: SearchProps) => {
       onValueChange={handleOnValueChange}
       endContent={
         <div className="inline-flex items-center gap-2">
-          {query.length > 0 && (
+          {value.length > 0 && (
             <button
               className={`w-8 h-8 rounded-full border border-default-400 ${props.classNames?.clearButton ?? ""}`}
               onClick={handleOnClear}
