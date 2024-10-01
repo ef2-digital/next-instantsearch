@@ -1,5 +1,5 @@
 import { Input, type InputProps } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchBox, type UseSearchBoxProps } from "react-instantsearch";
 
 export interface SearchProps
@@ -27,6 +27,12 @@ const Search = ({ endContent, clearContent, ...props }: SearchProps) => {
     clear();
     setValue("");
   };
+
+  useEffect(() => {
+    if (value !== query) {
+      setValue(query);
+    }
+  }, [query]);
 
   return (
     <Input
