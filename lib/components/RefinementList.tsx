@@ -12,7 +12,7 @@ import {
 import { UseRefinementListProps, useRefinementList } from "react-instantsearch";
 
 export interface RefinementListProps
-  extends Omit<CheckboxGroupProps, "children">,
+  extends Omit<CheckboxGroupProps, "children" | "value">,
     UseRefinementListProps {
   checkboxProps?: Omit<CheckboxProps, "children" | "classNames">;
   checkboxClassNames?: SlotsToClasses<CheckboxSlots>;
@@ -29,14 +29,36 @@ const RefinementList = ({
 }: RefinementListProps) => {
   const { items, refine } = useRefinementList(props);
 
+  // Methods.
+  const handleOnChange = (isSelected: boolean, value: string) => {
+    if (
+      isSelected &&
+      items
+        .filter((item) => item.isRefined)
+        .map((item) => item.value)
+        .includes(value)
+    ) {
+      return;
+    }
+
+    refine(value);
+  };
+
+  // Render.
+  if (items.length === 0) {
+    return null;
+  }
+
   return (
-    <CheckboxGroup {...props}>
+    <CheckboxGroup
+      value={items.filter((item) => item.isRefined).map((item) => item.value)}
+      {...props}
+    >
       {items.map((item) => (
         <Checkbox
           key={item.value}
           value={item.value}
-          isSelected={item.isRefined}
-          onValueChange={() => refine(item.value)}
+          onValueChange={(isSelected) => handleOnChange(isSelected, item.value)}
           classNames={{
             ...checkboxClassNames,
             label: `inline-flex gap-2 ${checkboxClassNames?.label ?? ""}`,
